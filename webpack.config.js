@@ -17,10 +17,25 @@ module.exports = {
                 use: ['style-loader', 'css-loader', 'sass-loader'],
                 test: /\.s?css/,
             },
+            {
+                test: /\.(png|jpg|gif)$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: '[path][name].[ext]',
+                            publicPath: '/dist/',
+                        },
+                    },
+                ],
+            },
         ],
     },
     resolve: {
-        modules: [path.resolve(__dirname, 'src'), 'node_modules']
+        modules: [
+            path.resolve(__dirname, 'src'),
+            'node_modules'
+        ],
     },
     devServer: {
         contentBase: path.join(__dirname, 'public'),
@@ -28,4 +43,4 @@ module.exports = {
         publicPath: '/dist/',
     },
     devtool: 'cheap-module-eval-source-map',
-}
+};
